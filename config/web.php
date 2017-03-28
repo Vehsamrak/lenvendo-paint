@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => SRC_DIRECTORY,
     'runtimePath' => RUNTIME_DIRECTORY,
+    'viewPath' => VIEW_DIRECTORY,
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
@@ -36,7 +37,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'post_image' => 'default/postImage',
+                '' => 'default/index',
             ],
         ],
     ],
