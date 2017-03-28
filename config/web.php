@@ -1,8 +1,12 @@
 <?php
 
+use Lenvendo\Canvas\Controller\DefaultController;
+use Lenvendo\Canvas\Controller\ErrorController;
+
 $config = [
     'id' => 'basic',
-    'basePath' => dirname(__DIR__),
+    'basePath' => SRC_DIRECTORY,
+    'runtimePath' => RUNTIME_DIRECTORY,
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
@@ -16,11 +20,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
+            'errorAction' => 'error/index',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -32,8 +32,19 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                'post_image' => 'default/postImage',
+            ],
+        ],
     ],
     'params' => require(__DIR__ . '/params.php'),
+    'controllerMap' => [
+        'default' => DefaultController::class,
+        'error' => ErrorController::class
+    ],
 ];
 
 if (YII_ENV_DEV) {
