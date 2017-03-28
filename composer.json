@@ -1,0 +1,25 @@
+{
+    "name": "petr/lenvendo-test",
+    "authors": [
+        {
+            "name": "Petr Karmashev",
+            "email": "smonkl@bk.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lenvendo\\Canvas\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
+    },
+    "require": {
+        "yiisoft/yii2": "2.0.11.2"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "^2.0"
+    }
+}
