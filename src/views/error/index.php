@@ -1,3 +1,3 @@
 <div class="site-error">
-    <p>Error occured.</p>
+    <p>Error occured: <?= $name ?></p>
 </div>
