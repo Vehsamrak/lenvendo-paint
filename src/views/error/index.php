@@ -1,3 +1,4 @@
 <div class="site-error">
-    <p>Error occured: <?= $name ?></p>
+    <strong><?= $name ?></strong>
+    <p>Error occured: <?= $message ?></p>
 </div>
