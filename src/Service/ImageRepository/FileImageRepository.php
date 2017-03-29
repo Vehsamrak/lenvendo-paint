@@ -1,8 +1,8 @@
 <?php
 
-namespace Lenvendo\Canvas\ImageRepository;
+namespace Lenvendo\Canvas\Service\ImageRepository;
 
-use Lenvendo\Canvas\IdGenerator\IdGenerator;
+use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
 
 /**
  * @author Vehsamrak

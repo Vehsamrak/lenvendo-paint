@@ -2,6 +2,9 @@
 
 use Lenvendo\Canvas\Controller\DefaultController;
 use Lenvendo\Canvas\Controller\ErrorController;
+use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
+use Lenvendo\Canvas\Service\ImageRepository\FileImageRepository;
+
 
 $config = [
     'id' => 'basic',
@@ -39,10 +42,10 @@ $config = [
             'rules' => require(__DIR__ . '/routes.php'),
         ],
         'imageRepository' => [
-            'class' => \Lenvendo\Canvas\ImageRepository\FileImageRepository::class
+            'class' => FileImageRepository::class
         ],
         'idGenerator' => [
-            'class' => \Lenvendo\Canvas\IdGenerator\IdGenerator::class
+            'class' => IdGenerator::class
         ],
     ],
     'params' => require(__DIR__ . '/params.php'),

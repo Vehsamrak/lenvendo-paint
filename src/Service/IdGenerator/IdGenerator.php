@@ -1,6 +1,6 @@
 <?php
 
-namespace Lenvendo\Canvas\IdGenerator;
+namespace Lenvendo\Canvas\Service\IdGenerator;
 
 use Ramsey\Uuid\Uuid;
 

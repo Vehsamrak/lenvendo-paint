@@ -1,6 +1,6 @@
 <?php
 
-namespace Lenvendo\Canvas\ImageRepository;
+namespace Lenvendo\Canvas\Service\ImageRepository;
 
 /**
  * @author Vehsamrak
