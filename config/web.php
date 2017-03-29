@@ -38,6 +38,9 @@ $config = [
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/routes.php'),
         ],
+        'imageRepository' => [
+            'class' => \Lenvendo\Canvas\ImageRepository\FileImageRepository::class
+        ],
     ],
     'params' => require(__DIR__ . '/params.php'),
     'controllerMap' => [
