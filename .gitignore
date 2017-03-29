@@ -2,3 +2,5 @@
 /vendor
 /basic
 /runtime
+!schemes/.gitkeep
+schemes/
