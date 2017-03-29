@@ -1,9 +1,33 @@
 {% extends 'layout.html.twig' %}
 
 {% block navigation %}
-    <a href="{{ imagesListUrl }}" class="button">Images List</a>
+    <a href="{{ imagesListUrl }}" class="button">Back to Images List</a>
 {% endblock navigation %}
 
 {% block content %}
+    <table>
+        <tr>
+            <td>
+                <canvas id="painting" width="400" height="300"></canvas>
+            </td>
+            <td class="painting-navigation">
+                <span class="button">Save</span>
+                <span id="painting-reset" class="button">Reset</span>
+            </td>
+        </tr>
+    </table>
 
+    <script>
+        var canvas = new fabric.Canvas('painting', {
+            isDrawingMode: true
+        });
+
+        canvas.freeDrawingBrush.width = 5;
+
+        $('#painting-reset').click(function () {
+            canvas.clear();
+        });
+
+        canvas.add(rect);
+    </script>
 {% endblock content %}
