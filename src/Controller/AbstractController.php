@@ -11,4 +11,9 @@ abstract class AbstractController extends Controller
     {
         return json_encode($data);
     }
+
+    protected function getService(string $serviceName)
+    {
+        return \Yii::$app->get($serviceName);
+    }
 }
