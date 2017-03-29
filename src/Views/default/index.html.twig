@@ -1,11 +1,11 @@
 {% extends 'layout.html.twig' %}
 
+{% block navigation %}
+    <a href="{{ createImageUrl }}" class="button">Create New Image</a>
+{% endblock navigation %}
+
 {% block content %}
-    <header>Lenvendo Paint</header>
-
     <div class="image-box">
-        <a href="{{ createImageUrl }}" class="button">Create New Image</a>
-
         {% if imageUrls|default %}
             {% for imageUrl in imageUrls %}
                 <a href="{{ imageUrl }}" class="image"></a>
