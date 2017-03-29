@@ -5,7 +5,7 @@
 
     <?php if (isset($imageUrl)) {
         foreach ($imageUrl as $imageUrl) { ?>
-        <a href="<?= $imageUrl ?>" class="image"></a>
+            <a href="<?= $imageUrl ?>" class="image"></a>
         <?php }
     } ?>
 </div>
