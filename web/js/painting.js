@@ -11,7 +11,7 @@ $('#painting-reset').click(function () {
 $('#painting-save').click(function () {
     var imageSchema = JSON.stringify(canvas);
 
-    $.post('/image/post', imageSchema, function (data) {
+    $.post('/image/post', {'data': imageSchema}, function (data) {
         $('#painting-result').html(data);
     });
 });
