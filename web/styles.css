@@ -87,3 +87,7 @@ canvas#painting {
     font-size: 26px;
     padding: 20px;
 }
+
+#painting-result {
+    margin: 30px;
+}

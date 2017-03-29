@@ -4,6 +4,11 @@
     <a href="{{ imagesListUrl }}" class="button">Back to Images List</a>
 {% endblock navigation %}
 
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/js/painting.js"></script>
+{% endblock scripts %}
+
 {% block content %}
     <table>
         <tr>
@@ -17,25 +22,4 @@
             </td>
         </tr>
     </table>
-
-    <script>
-        var canvas = new fabric.Canvas('painting', {
-            isDrawingMode: true
-        });
-
-        canvas.freeDrawingBrush.width = 5;
-
-        $('#painting-reset').click(function () {
-            canvas.clear();
-        });
-
-        $('#painting-save').click(function () {
-            var imageSchema = JSON.stringify(canvas);
-
-            $.post('/image/post', imageSchema, function (data) {
-                $('#painting-result').html(data);
-            });
-        });
-
-    </script>
 {% endblock content %}
