@@ -3,6 +3,7 @@
 namespace Lenvendo\Canvas\Controller;
 
 use Lenvendo\Canvas\Service\ImageRepository\ImageRepository;
+use yii\helpers\Url;
 
 /**
  * @author Vehsamrak
@@ -23,5 +24,10 @@ class ImageController extends AbstractController
         $image = $imageRepository->saveImageSchema(json_encode($result));
 
         return $this->respondJson($result);
+    }
+
+    public function actionCreate(): string
+    {
+        return $this->render('image/create.html.twig', ['imagesListUrl' => Url::to(['default/index'])]);
     }
 }
