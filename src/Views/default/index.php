@@ -1,14 +1,9 @@
 <header>Lenvendo Paint</header>
 
 <div class="image-box">
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
-    <div class="image"></div>
+    <a href="<?= $createImageUrl ?>" class="button">Create New Image</a>
+
+    <?php foreach ($imageUrl as $imageUrl) { ?>
+        <a href="<?= $imageUrl ?>" class="image"></a>
+    <?php } ?>
 </div>

@@ -17,6 +17,26 @@ header {
     display: inline-block;
     height: 100px;
     width: 200px;
-    background-color: #d72229;
+    background-color: rgba(215, 34, 41, 1);
     margin: 20px;
+    text-decoration: none;
+}
+
+.image:hover {
+    background-color: rgba(215, 34, 41, 0.5);
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+.button {
+    display: block;
+    background-color: rgb(54, 12, 13);
+    margin: 20px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 26px;
+    padding: 20px;
 }
