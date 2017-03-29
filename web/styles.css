@@ -24,7 +24,7 @@ table td:first-child {
 }
 
 table td:last-child {
-    text-align: center;
+    text-align: left;
     width: 100%;
 }
 
@@ -90,4 +90,8 @@ canvas#painting {
 
 #painting-result {
     margin: 30px;
+}
+
+#painting-result .password {
+    font-weight: 800;
 }

@@ -9,9 +9,15 @@ $('#painting-reset').click(function () {
 });
 
 $('#painting-save').click(function () {
-    var imageSchema = JSON.stringify(canvas);
+    var imageScheme = JSON.stringify(canvas);
 
-    $.post('/image/post', {'data': imageSchema}, function (data) {
-        $('#painting-result').html(data);
+    $.post('/image/post', {'data': imageScheme}, function (data) {
+        data = JSON.parse(data);
+
+        var imageSchemeId = data.id;
+        var imageSchemePassword = data.password;
+
+        $('#painting-result .id').html('Id: ' + imageSchemeId);
+        $('#painting-result .password').html('Password: ' + imageSchemePassword);
     });
 });
