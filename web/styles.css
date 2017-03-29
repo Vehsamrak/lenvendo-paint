@@ -1,0 +1,22 @@
+body {
+    font-family: 'Roboto Condensed', serif;
+    color: #2a353b;
+}
+
+header {
+    text-align: center;
+    margin: 50px;
+    font-size: 50px;
+}
+
+.image-box {
+    text-align: center;
+}
+
+.image {
+    display: inline-block;
+    height: 100px;
+    width: 200px;
+    background-color: #d72229;
+    margin: 20px;
+}
