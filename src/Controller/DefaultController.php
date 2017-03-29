@@ -2,7 +2,7 @@
 
 namespace Lenvendo\Canvas\Controller;
 
-use Lenvendo\Canvas\ImageRepository\ImageRepository;
+use Lenvendo\Canvas\Service\ImageRepository\ImageRepository;
 use yii\helpers\Url;
 
 class DefaultController extends AbstractController
@@ -20,10 +20,10 @@ class DefaultController extends AbstractController
         $allImageIds = $imageRepository->getAllImageSchemeIds();
 
         foreach ($allImageIds as $imageId) {
-            $parameters['imageUrl'][] = sprintf('%s/%s', Url::to(['image/show']), $imageId);
+            $parameters['imageUrls'][] = sprintf('%s/%s', Url::to(['image/show']), $imageId);
         }
 
-        return $this->render('index', $parameters);
+        return $this->render('default/index.html.twig', $parameters);
     }
 
     public function actionPost(): string

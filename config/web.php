@@ -4,7 +4,7 @@ use Lenvendo\Canvas\Controller\DefaultController;
 use Lenvendo\Canvas\Controller\ErrorController;
 use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
 use Lenvendo\Canvas\Service\ImageRepository\FileImageRepository;
-
+use Lenvendo\Canvas\Service\Twig\Twig;
 
 $config = [
     'id' => 'basic',
@@ -46,6 +46,9 @@ $config = [
         ],
         'idGenerator' => [
             'class' => IdGenerator::class
+        ],
+        'twig' => [
+            'class' => Twig::class
         ],
     ],
     'params' => require(__DIR__ . '/params.php'),
