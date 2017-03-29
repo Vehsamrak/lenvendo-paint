@@ -2,6 +2,6 @@
 
 return [
     '' => 'default/index',
-    'post_image' => 'default/post',
+    'image/post' => 'image/post',
     'image' => 'image/show',
 ];

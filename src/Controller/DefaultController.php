@@ -25,19 +25,4 @@ class DefaultController extends AbstractController
 
         return $this->render('default/index.html.twig', $parameters);
     }
-
-    public function actionPost(): string
-    {
-        /** @var ImageRepository $imageRepository */
-        $imageRepository = $this->getService('imageRepository');
-
-        $result = [
-            'id'   => mt_rand(0, 1000),
-            'code' => md5(mt_rand(0, 1000)),
-        ];
-
-        $image = $imageRepository->saveImageSchema(json_encode($result));
-
-        return $this->respondJson($result);
-    }
 }

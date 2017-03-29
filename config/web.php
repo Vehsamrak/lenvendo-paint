@@ -2,6 +2,7 @@
 
 use Lenvendo\Canvas\Controller\DefaultController;
 use Lenvendo\Canvas\Controller\ErrorController;
+use Lenvendo\Canvas\Controller\ImageController;
 use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
 use Lenvendo\Canvas\Service\ImageRepository\FileImageRepository;
 use Lenvendo\Canvas\Service\Twig\Twig;
@@ -53,8 +54,9 @@ $config = [
     ],
     'params' => require(__DIR__ . '/params.php'),
     'controllerMap' => [
+        'error' => ErrorController::class,
         'default' => DefaultController::class,
-        'error' => ErrorController::class
+        'image' => ImageController::class,
     ],
 ];
 
