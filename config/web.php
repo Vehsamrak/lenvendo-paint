@@ -5,6 +5,7 @@ use Lenvendo\Canvas\Controller\ErrorController;
 use Lenvendo\Canvas\Controller\ImageController;
 use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
 use Lenvendo\Canvas\Service\ImageRepository\FileImageRepository;
+use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageSchemeFactory;
 use Lenvendo\Canvas\Service\Twig\Twig;
 
 $config = [
@@ -50,6 +51,9 @@ $config = [
         ],
         'twig' => [
             'class' => Twig::class
+        ],
+        'imageSchemeFactory' => [
+            'class' => ImageSchemeFactory::class
         ],
     ],
     'params' => require(__DIR__ . '/params.php'),
