@@ -2,7 +2,8 @@
 
 namespace Lenvendo\Canvas\Service\ImageRepository;
 
-use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
+use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageSchemeFactory;
+use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageScheme as ImageScheme;
 
 /**
  * @author Vehsamrak
@@ -10,12 +11,12 @@ use Lenvendo\Canvas\Service\IdGenerator\IdGenerator;
 class FileImageRepository implements ImageRepository
 {
 
-    /** @var IdGenerator */
-    private $idGenerator;
+    /** @var ImageSchemeFactory */
+    private $imageSchemeFactory;
 
-    public function __construct(IdGenerator $idGenerator)
+    public function __construct(ImageSchemeFactory $imageSchemeFactory)
     {
-        $this->idGenerator = $idGenerator;
+        $this->imageSchemeFactory = $imageSchemeFactory;
     }
 
     public function getAllImageSchemeIds(): array
@@ -36,18 +37,18 @@ class FileImageRepository implements ImageRepository
     {
         $imageSchema = json_encode(['test_schema']);
 
-
         return $imageSchema;
     }
 
-    public function saveImageSchema(string $imageSchema): string
+    public function saveImageSchema(string $image): ImageScheme
     {
-        $imageSchemaId = $this->idGenerator->generateRandomId();
-        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $imageSchemaId]);
+        $imageScheme = $this->imageSchemeFactory->createImageScheme();
+        $imageSchemeId = $imageScheme->getId();
+        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $imageSchemeId]);
 
-        file_put_contents($filePath, $imageSchema);
+        file_put_contents($filePath, $image);
 
-        return $imageSchemaId;
+        return $imageScheme;
     }
 
     private function getImageSchemaDirectory(): string

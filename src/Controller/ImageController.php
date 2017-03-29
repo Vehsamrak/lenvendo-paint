@@ -23,12 +23,14 @@ class ImageController extends AbstractController
         /** @var ImageRepository $imageRepository */
         $imageRepository = $this->getService('imageRepository');
 
-        $result = [
-            'id'   => mt_rand(0, 1000),
-            'code' => md5(mt_rand(0, 1000)),
-        ];
+        $imageSchema = \Yii::$app->request->post('data');
 
-        $image = $imageRepository->saveImageSchema(json_encode($result));
+        $image = $imageRepository->saveImageSchema($imageSchema);
+
+        $result = [
+            'id'       => $image->getId(),
+            'password' => $image->getPassword(),
+        ];
 
         return $this->respondJson($result);
     }

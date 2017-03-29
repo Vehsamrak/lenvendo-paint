@@ -1,6 +1,6 @@
 <?php
 
-namespace Lenvendo\Canvas\Service\ImageRepository\DTO;
+namespace Lenvendo\Canvas\Service\ImageRepository\ImageScheme;
 
 /**
  * @author Vehsamrak
