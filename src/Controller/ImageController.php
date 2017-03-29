@@ -11,6 +11,13 @@ use yii\helpers\Url;
 class ImageController extends AbstractController
 {
 
+    /** {@inheritDoc} */
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
     public function actionPost(): string
     {
         /** @var ImageRepository $imageRepository */

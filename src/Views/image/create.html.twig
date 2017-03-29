@@ -11,7 +11,8 @@
                 <canvas id="painting" width="400" height="300"></canvas>
             </td>
             <td class="painting-navigation">
-                <span class="button">Save</span>
+                <div id="painting-result"></div>
+                <span id="painting-save" class="button">Save</span>
                 <span id="painting-reset" class="button">Reset</span>
             </td>
         </tr>
@@ -28,6 +29,13 @@
             canvas.clear();
         });
 
-        canvas.add(rect);
+        $('#painting-save').click(function () {
+            var imageSchema = JSON.stringify(canvas);
+
+            $.post('/image/post', imageSchema, function (data) {
+                $('#painting-result').html(data);
+            });
+        });
+
     </script>
 {% endblock content %}
