@@ -41,6 +41,9 @@ $config = [
         'imageRepository' => [
             'class' => \Lenvendo\Canvas\ImageRepository\FileImageRepository::class
         ],
+        'idGenerator' => [
+            'class' => \Lenvendo\Canvas\IdGenerator\IdGenerator::class
+        ],
     ],
     'params' => require(__DIR__ . '/params.php'),
     'controllerMap' => [
