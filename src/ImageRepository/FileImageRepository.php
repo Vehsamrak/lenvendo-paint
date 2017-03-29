@@ -43,8 +43,7 @@ class FileImageRepository implements ImageRepository
     public function saveImageSchema(string $imageSchema): string
     {
         $imageSchemaId = $this->idGenerator->generateRandomId();
-        $fileName = $imageSchemaId . '.json';
-        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $fileName]);
+        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $imageSchemaId]);
 
         file_put_contents($filePath, $imageSchema);
 
