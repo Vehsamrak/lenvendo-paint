@@ -20,11 +20,10 @@ class ImageController extends AbstractController
 
     public function actionPost(): string
     {
-        /** @var ImageRepository $imageRepository */
-        $imageRepository = $this->getService('imageRepository');
-
         $imageSchema = \Yii::$app->request->post('data');
 
+        /** @var ImageRepository $imageRepository */
+        $imageRepository = $this->getService('imageRepository');
         $image = $imageRepository->saveImageSchema($imageSchema);
 
         $result = [

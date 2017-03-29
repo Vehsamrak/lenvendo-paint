@@ -46,6 +46,10 @@ class FileImageRepository implements ImageRepository
         $imageSchemeId = $imageScheme->getId();
         $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $imageSchemeId]);
 
+        $image = json_decode($image, true);
+        $image['password'] = $imageScheme->getPassword();
+        $image = json_encode($image);
+
         file_put_contents($filePath, $image);
 
         return $imageScheme;
