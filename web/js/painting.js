@@ -14,10 +14,6 @@ if (canvasIsNew) {
     canvas.freeDrawingBrush.width = 5;
 }
 
-$('#painting-reset').click(function () {
-    canvas.clear();
-});
-
 $('#painting-create').click(function () {
     $(this).remove();
     $('#painting-reset').remove();
@@ -37,12 +33,11 @@ $('#painting-create').click(function () {
 
 $('#painting-unlock').click(function () {
 
-    //TODO: ajax query to check password
     //TODO: save existing image
     //TODO: imageScheme as canvas data attribute, not twigged var
     //TODO: password md5
 
-    var imageId = $('painting').data('id');
+    var imageId = $('#painting').data('id');
     var password = $(this).siblings('input').val();
 
     $.post('/image/check', {'id': imageId, 'password': password}, function (data) {
