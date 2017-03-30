@@ -1,5 +1,5 @@
 Installation
-############
+============
 
 1. `git clone` this repository
 1. `composer global require "fxp/composer-asset-plugin:^1.2.0"`
