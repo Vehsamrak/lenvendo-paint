@@ -1,5 +1,4 @@
 var canvas = new fabric.StaticCanvas('painting');
-
 var $painting = $('#painting');
 var $paintingResult = $('#painting-result');
 var $resultMessage = $paintingResult.find('.message');

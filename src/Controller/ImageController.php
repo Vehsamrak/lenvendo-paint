@@ -4,7 +4,6 @@ namespace Lenvendo\Canvas\Controller;
 
 use Lenvendo\Canvas\Service\ImageRepository\ImageRepository;
 use yii\helpers\Url;
-use yii\web\NotFoundHttpException;
 use yii\web\UnauthorizedHttpException;
 
 /**
@@ -107,6 +106,6 @@ class ImageController extends AbstractController
         $image->setScheme($imageScheme);
         $imageRepository->saveImage($image);
 
-        return $this->respondJson([]);
+        return $this->respondJson();
     }
 }
