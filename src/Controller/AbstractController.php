@@ -22,7 +22,7 @@ abstract class AbstractController extends Controller
         return $this->twig->render($template, $params);
     }
 
-    protected function respondJson($data): string
+    protected function respondJson($data = []): string
     {
         return json_encode($data);
     }

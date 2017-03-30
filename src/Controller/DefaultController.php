@@ -17,7 +17,7 @@ class DefaultController extends AbstractController
             'createImageUrl' => Url::to(['image/create']),
         ];
 
-        $allImageIds = $imageRepository->getAllImageSchemeIds();
+        $allImageIds = $imageRepository->getAllImageIds();
 
         foreach ($allImageIds as $imageId) {
             $parameters['images'][$imageId] = [

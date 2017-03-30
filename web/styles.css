@@ -106,3 +106,7 @@ canvas.list-painting{
 #painting-result .password {
     font-weight: 800;
 }
+
+.message {
+    margin: 20px;
+}

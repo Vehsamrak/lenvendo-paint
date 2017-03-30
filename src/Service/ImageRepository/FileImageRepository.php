@@ -20,7 +20,7 @@ class FileImageRepository implements ImageRepository
         $this->imageSchemeFactory = $imageSchemeFactory;
     }
 
-    public function getAllImageSchemeIds(): array
+    public function getAllImageIds(): array
     {
         $allFiles = scandir($this->getImageSchemaDirectory());
         $unnecessaryFiles = ['.', '..', '.gitkeep'];
@@ -56,19 +56,23 @@ class FileImageRepository implements ImageRepository
         return new Image($id, $password, $image);
     }
 
-    public function saveImageSchema(string $image): Image
+    public function createImage(string $imageScheme): Image
     {
-        $imageScheme = $this->imageSchemeFactory->createImageScheme($image);
-        $imageSchemeId = $imageScheme->getId();
-        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $imageSchemeId]);
+        $image = $this->imageSchemeFactory->createImageScheme($imageScheme);
+        $this->saveImage($image);
 
-        $image = json_decode($image, true);
-        $image['password'] = $imageScheme->getPassword();
-        $image = json_encode($image);
+        return $image;
+    }
 
-        file_put_contents($filePath, $image);
+    public function saveImage(Image $image): void
+    {
+        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $image->getId()]);
 
-        return $imageScheme;
+        $imageScheme = json_decode($image->getScheme(), true);
+        $imageScheme['password'] = $image->getPassword();
+        $imageScheme = json_encode($imageScheme);
+
+        file_put_contents($filePath, $imageScheme);
     }
 
     private function getImageSchemaDirectory(): string
