@@ -26,13 +26,15 @@ class ImageSchemeFactory
         return new ImageScheme($id, $password);
     }
 
-    private function generateRandomPassword(): string
+    /**
+     * Numeric password generation.
+     * @return string
+     */
+    private function generateRandomPassword(int $passwordLength = 5): string
     {
         $password = '';
-        $passwordLength = 6;
-
         for ($length = 0; $length < $passwordLength; $length++) {
-            $password .= chr(rand(32, 126));
+            $password .= chr(rand(48, 57));
         }
 
         return $password;
