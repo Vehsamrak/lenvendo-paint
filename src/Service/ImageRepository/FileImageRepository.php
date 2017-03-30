@@ -34,7 +34,7 @@ class FileImageRepository implements ImageRepository
         return array_values($allFiles);
     }
 
-    public function getImageSchemaById(string $id): Image
+    public function getImageById(string $id): Image
     {
         $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $id]);
 

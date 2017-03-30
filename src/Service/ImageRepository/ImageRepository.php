@@ -11,6 +11,6 @@ interface ImageRepository
 {
 
     public function getAllImageSchemeIds(): array;
-    public function getImageSchemaById(string $id): Image;
+    public function getImageById(string $id): Image;
     public function saveImageSchema(string $imageSchema): Image;
 }

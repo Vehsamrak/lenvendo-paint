@@ -51,7 +51,7 @@ class ImageController extends AbstractController
     {
         /** @var ImageRepository $imageRepository */
         $imageRepository = $this->getService('imageRepository');
-        $image = $imageRepository->getImageSchemaById($id);
+        $image = $imageRepository->getImageById($id);
 
         return $this->render(
             'image/image.html.twig',
@@ -79,7 +79,7 @@ class ImageController extends AbstractController
         $imageRepository = $this->getService('imageRepository');
 
         try {
-            $image = $imageRepository->getImageSchemaById($id);
+            $image = $imageRepository->getImageById($id);
 
             if ($password != $image->getPassword()) {
                 throw new UnauthorizedHttpException();
