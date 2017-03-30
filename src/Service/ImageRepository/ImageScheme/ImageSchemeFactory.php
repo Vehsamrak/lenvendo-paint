@@ -28,13 +28,12 @@ class ImageSchemeFactory
 
     /**
      * Numeric password generation.
-     * @return string
      */
     private function generateRandomPassword(int $passwordLength = 5): string
     {
         $password = '';
         for ($length = 0; $length < $passwordLength; $length++) {
-            $password .= chr(rand(48, 57));
+            $password .= rand(0, 9);
         }
 
         return $password;
