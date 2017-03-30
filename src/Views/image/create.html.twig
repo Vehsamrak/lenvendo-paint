@@ -19,7 +19,11 @@
             <td class="painting-navigation">
                 <div id="painting-result">
                     <div class="id"></div>
-                    <div class="password"></div>
+                    <div class="password">
+                        {% if not isNewImage %}
+                            Enter password: <input type="text"/>
+                        {% endif %}
+                    </div>
                 </div>
                 <span id="painting-save" class="button">Save</span>
                 <span id="painting-reset" class="button">Reset</span>

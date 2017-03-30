@@ -36,7 +36,13 @@ class ImageController extends AbstractController
 
     public function actionCreate(): string
     {
-        return $this->render('image/create.html.twig', ['imagesListUrl' => Url::to(['default/index'])]);
+        return $this->render(
+            'image/create.html.twig',
+            [
+                'isNewImage'    => true,
+                'imagesListUrl' => Url::to(['default/index']),
+            ]
+        );
     }
 
     public function actionView(string $id): string
@@ -51,6 +57,7 @@ class ImageController extends AbstractController
                 'imagesListUrl' => Url::to(['default/index']),
                 'imageId'       => $id,
                 'scheme'        => $imageScheme,
+                'isNewImage'    => false,
             ]
         );
     }
