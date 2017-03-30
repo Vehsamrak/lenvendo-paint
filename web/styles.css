@@ -46,7 +46,7 @@ table td:last-child {
 }
 
 .image:hover {
-    background-color: rgb(12, 54, 14);
+    background-color: rgba(12, 54, 14, 0.6);
 }
 
 a:hover,
