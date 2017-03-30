@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
             $parameters['images'][$imageId] = [
                 'id'          => $imageId,
                 'imageUrl'    => sprintf('%s/%s', Url::to(['image/view']), $imageId),
-                'imageScheme' => $imageRepository->getImageSchemaById($imageId),
+                'imageScheme' => $imageRepository->getImageSchemaById($imageId)->getScheme(),
             ];
         }
 
