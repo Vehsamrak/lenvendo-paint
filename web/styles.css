@@ -71,7 +71,8 @@ a:hover,
     padding: 10px;
 }
 
-canvas#painting {
+canvas#painting,
+canvas.list-painting{
     border: solid black 1px;
 }
 
