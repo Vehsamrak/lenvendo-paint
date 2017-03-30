@@ -4,12 +4,17 @@
     <a href="{{ createImageUrl }}" class="button">Create New Image</a>
 {% endblock navigation %}
 
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/js/painting-list.js"></script>
+{% endblock scripts %}
+
 {% block content %}
     <div class="image-box">
         {% if images|default %}
             {% for image in images %}
                 <a href="{{ image.imageUrl }}" class="image">
-                    <canvas class="list-painting" width="400" height="300" data-image="{{ image.imageScheme }}"></canvas>
+                    <canvas id="{{ image.id }}" class="list-painting" width="400" height="300" data-image="{{ image.imageScheme }}"></canvas>
                 </a>
             {% endfor %}
         {% endif %}
