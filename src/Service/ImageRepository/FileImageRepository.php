@@ -34,7 +34,7 @@ class FileImageRepository implements ImageRepository
         return array_values($allFiles);
     }
 
-    public function getImageSchemaById(string $id): string
+    public function getImageSchemaById(string $id): ImageScheme
     {
         $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $id]);
         $image = file_get_contents($filePath);
@@ -44,15 +44,16 @@ class FileImageRepository implements ImageRepository
         }
 
         $image = json_decode($image, true);
+        $password = $image['password'];
         unset($image['password']);
         $image = json_encode($image);
 
-        return $image;
+        return new ImageScheme($id, $password, $image);
     }
 
     public function saveImageSchema(string $image): ImageScheme
     {
-        $imageScheme = $this->imageSchemeFactory->createImageScheme();
+        $imageScheme = $this->imageSchemeFactory->createImageScheme($image);
         $imageSchemeId = $imageScheme->getId();
         $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $imageSchemeId]);
 
