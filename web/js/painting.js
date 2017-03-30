@@ -8,6 +8,7 @@ if (imageSchemeData) {
 
 var $paintingResult = $('#painting-result');
 var $painting = $('#painting');
+var $resultMessage = $('#painting-result .message');
 var canvasIsNew = $painting.data('is-new');
 var imageId = $painting.data('id');
 var savedPassword;
@@ -29,23 +30,23 @@ $('#painting-create').click(function () {
         var imageSchemeId = data.id;
         var imageSchemePassword = data.password;
 
-        $('#painting-result .message').html(
+        $resultMessage.html(
             'Id: ' + imageSchemeId + '<br><strong>Password: ' + imageSchemePassword + '</strong>'
         );
-    });
+    })
 });
 
 $('#painting-save').click(function () {
     var imageScheme = JSON.stringify(dynamicCanvas);
+    var $resultMessage = $('#painting-result .message');
 
     $.post('/image/save', {'scheme': imageScheme, 'id': imageId, 'password': savedPassword}, function () {
-        $('#painting-result .message').html('Image was saved!');
+        $resultMessage.html('Image was saved!').stop().fadeIn(500).fadeOut(3000);
     });
 });
 
 $('#painting-unlock').click(function () {
 
-    //TODO: lock canvas after save
     //TODO: imageScheme as canvas data attribute, not twigged var
 
     var password = $(this).siblings('input').val();
@@ -63,6 +64,6 @@ $('#painting-unlock').click(function () {
             dynamicCanvas.renderAll();
         }
     }).fail(function () {
-        $('.painting-unlock .result').html('Invalid password!');
+        $('.painting-unlock .result').html('Invalid password!').stop().fadeIn(500).fadeOut(3000);
     });
 });
