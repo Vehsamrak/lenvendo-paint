@@ -37,6 +37,11 @@ class FileImageRepository implements ImageRepository
     public function getImageSchemaById(string $id): Image
     {
         $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $id]);
+
+        if (!file_exists($filePath)) {
+        	throw new NotFoundHttpException('No image scheme was found.');
+        }
+
         $image = file_get_contents($filePath);
 
         if (!$image) {
