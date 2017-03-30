@@ -7,6 +7,12 @@ if (imageSchemeData) {
 }
 
 var $paintingResult = $('#painting-result');
+var canvasIsNew = $('#painting').data('is-new');
+
+if (canvasIsNew) {
+    canvas = new fabric.Canvas('painting', {isDrawingMode: true});
+    canvas.freeDrawingBrush.width = 5;
+}
 
 $('#painting-reset').click(function () {
     canvas.clear();
@@ -29,18 +35,31 @@ $('#painting-create').click(function () {
     });
 });
 
-$('.painting-unlock span').click(function () {
-    $('.painting-unlock').hide();
-    $paintingResult.removeClass('hidden');
+$('#painting-unlock').click(function () {
 
-    var canvas = new fabric.Canvas('painting', {
-        isDrawingMode: true
+    //TODO: ajax query to check password
+    //TODO: save existing image
+    //TODO: imageScheme as canvas data attribute, not twigged var
+    //TODO: password md5
+
+    var imageId = $('painting').data('id');
+    var password = $(this).siblings('input').val();
+
+    $.post('/image/check', {'id': imageId, 'password': password}, function (data) {
+        data = JSON.parse(data);
+
+        $('.painting-unlock').hide();
+        $paintingResult.removeClass('hidden');
+
+        var canvas = new fabric.Canvas('painting', {isDrawingMode: true});
+        canvas.freeDrawingBrush.width = 5;
+
+        if (imageSchemeData) {
+            canvas.loadFromJSON(imageSchemeData);
+            canvas.renderAll();
+        }
+    }).fail(function () {
+        $('.painting-unlock .result').html('Invalid password!');
     });
 
-    canvas.freeDrawingBrush.width = 5;
-
-    if (imageSchemeData) {
-        canvas.loadFromJSON(imageSchemeData);
-        canvas.renderAll();
-    }
 });

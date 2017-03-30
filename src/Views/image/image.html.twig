@@ -14,18 +14,19 @@
     <table>
         <tr>
             <td>
-                <canvas id="painting" width="400" height="300"></canvas>
+                <canvas id="painting" width="400" height="300" data-id="{{ imageId }}" data-is-new="{{ isNewImage }}"></canvas>
             </td>
 
             <td class="painting-navigation">
                 {% if not isNewImage %}
                     <div class="painting-unlock">
+                        <div class="result"></div>
                         Enter password: <input id="password" type="text"/>
-                        <span class="button">Unlock</span>
+                        <span id="painting-unlock" class="button">Unlock</span>
                     </div>
                 {% endif %}
 
-                <div id="painting-result" class="hidden">
+                <div id="painting-result" class="{{ isNewImage ? '' : 'hidden' }}">
                     <div class="id"></div>
                     <div class="password"></div>
 
