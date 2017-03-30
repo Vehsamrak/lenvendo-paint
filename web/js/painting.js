@@ -1,18 +1,18 @@
 var canvas = new fabric.StaticCanvas('painting');
 
-if (imageSchemeData) {
-    var imageSchemeData = JSON.parse(imageSchemeData);
-    canvas.loadFromJSON(imageSchemeData);
-    canvas.renderAll();
-}
-
-var $paintingResult = $('#painting-result');
 var $painting = $('#painting');
-var $resultMessage = $('#painting-result .message');
+var $paintingResult = $('#painting-result');
+var $resultMessage = $paintingResult.find('.message');
+var imageSchemeData = $painting.data('scheme');
 var canvasIsNew = $painting.data('is-new');
 var imageId = $painting.data('id');
 var savedPassword;
 var dynamicCanvas;
+
+if (imageSchemeData) {
+    canvas.loadFromJSON(imageSchemeData);
+    canvas.renderAll();
+}
 
 if (canvasIsNew) {
     dynamicCanvas = new fabric.Canvas('painting', {isDrawingMode: true});
@@ -38,7 +38,6 @@ $('#painting-create').click(function () {
 
 $('#painting-save').click(function () {
     var imageScheme = JSON.stringify(dynamicCanvas);
-    var $resultMessage = $('#painting-result .message');
 
     $.post('/image/save', {'scheme': imageScheme, 'id': imageId, 'password': savedPassword}, function () {
         $resultMessage.html('Image was saved!').stop().fadeIn(500).fadeOut(3000);
@@ -46,9 +45,6 @@ $('#painting-save').click(function () {
 });
 
 $('#painting-unlock').click(function () {
-
-    //TODO: imageScheme as canvas data attribute, not twigged var
-
     var password = $(this).siblings('input').val();
     savedPassword = password;
 

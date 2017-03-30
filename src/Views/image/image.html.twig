@@ -6,7 +6,6 @@
 
 {% block scripts %}
     {{ parent() }}
-    <script type="text/javascript">var imageSchemeData = '{{ scheme|raw }}';</script>
     <script type="text/javascript" src="/js/painting.js"></script>
 {% endblock scripts %}
 
@@ -14,7 +13,11 @@
     <table>
         <tr>
             <td>
-                <canvas id="painting" width="400" height="300" data-id="{{ imageId }}" data-is-new="{{ isNewImage }}"></canvas>
+                <canvas id="painting" width="400" height="300"
+                        data-id="{{ imageId }}"
+                        data-is-new="{{ isNewImage }}"
+                        data-scheme="{{ scheme }}">
+                </canvas>
             </td>
 
             <td class="painting-navigation">
