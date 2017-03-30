@@ -37,7 +37,7 @@ class ImageController extends AbstractController
     public function actionCreate(): string
     {
         return $this->render(
-            'image/create.html.twig',
+            'image/image.html.twig',
             [
                 'isNewImage'    => true,
                 'imagesListUrl' => Url::to(['default/index']),
@@ -52,7 +52,7 @@ class ImageController extends AbstractController
         $imageScheme = $imageRepository->getImageSchemaById($id);
 
         return $this->render(
-            'image/create.html.twig',
+            'image/image.html.twig',
             [
                 'imagesListUrl' => Url::to(['default/index']),
                 'imageId'       => $id,
