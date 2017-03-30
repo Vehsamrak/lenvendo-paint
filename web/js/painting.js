@@ -15,7 +15,10 @@ $('#painting-reset').click(function () {
     canvas.clear();
 });
 
-$('#painting-save').click(function () {
+$('#painting-create').click(function () {
+    $(this).remove();
+    $('#painting-reset').remove();
+
     var imageScheme = JSON.stringify(canvas);
 
     $.post('/image/post', {'data': imageScheme}, function (data) {

@@ -16,6 +16,7 @@
             <td>
                 <canvas id="painting" width="400" height="300"></canvas>
             </td>
+
             <td class="painting-navigation">
                 <div id="painting-result">
                     <div class="id"></div>
@@ -25,7 +26,13 @@
                         {% endif %}
                     </div>
                 </div>
-                <span id="painting-save" class="button">Save</span>
+
+                {% if isNewImage %}
+                    <span id="painting-create" class="button">Create</span>
+                {% else %}
+                    <span id="painting-save" class="button">Save</span>
+                {% endif %}
+
                 <span id="painting-reset" class="button">Reset</span>
             </td>
         </tr>
