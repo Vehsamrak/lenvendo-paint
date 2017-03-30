@@ -22,11 +22,11 @@ class ImageController extends AbstractController
 
     public function actionPost(): string
     {
-        $imageSchema = $this->getParameter('data');
+        $imageSchema = $this->getParameter('scheme');
 
         /** @var ImageRepository $imageRepository */
         $imageRepository = $this->getService('imageRepository');
-        $image = $imageRepository->saveImageSchema($imageSchema);
+        $image = $imageRepository->createImage($imageSchema);
 
         $result = [
             'id'       => $image->getId(),
@@ -73,22 +73,40 @@ class ImageController extends AbstractController
         	throw new UnauthorizedHttpException();
         }
 
-        $result = ['isAllowed' => true];
+        /** @var ImageRepository $imageRepository */
+        $imageRepository = $this->getService('imageRepository');
+
+        $image = $imageRepository->getImageById($id);
+
+        if ($password != $image->getPassword()) {
+            throw new UnauthorizedHttpException();
+        }
+
+        return $this->respondJson();
+    }
+
+    public function actionSave(): string
+    {
+        $id = $this->getParameter('id');
+        $password = $this->getParameter('password');
+        $imageScheme = $this->getParameter('scheme');
+
+        if (!$id || !$password) {
+            throw new UnauthorizedHttpException();
+        }
 
         /** @var ImageRepository $imageRepository */
         $imageRepository = $this->getService('imageRepository');
 
-        try {
-            $image = $imageRepository->getImageById($id);
+        $image = $imageRepository->getImageById($id);
 
-            if ($password != $image->getPassword()) {
-                throw new UnauthorizedHttpException();
-            }
-        } catch (NotFoundHttpException $exception) {
-            $result['isAllowed'] = false;
-            $result['error'] = $exception->statusCode;
-        };
+        if ($password != $image->getPassword()) {
+            throw new UnauthorizedHttpException();
+        }
 
-        return $this->respondJson($result);
+        $image->setScheme($imageScheme);
+        $imageRepository->saveImage($image);
+
+        return $this->respondJson([]);
     }
 }
