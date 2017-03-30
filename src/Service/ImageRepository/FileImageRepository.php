@@ -4,6 +4,7 @@ namespace Lenvendo\Canvas\Service\ImageRepository;
 
 use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageSchemeFactory;
 use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageScheme as ImageScheme;
+use yii\web\NotFoundHttpException;
 
 /**
  * @author Vehsamrak
@@ -35,9 +36,18 @@ class FileImageRepository implements ImageRepository
 
     public function getImageSchemaById(string $id): string
     {
-        $imageSchema = json_encode(['test_schema']);
+        $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $id]);
+        $image = file_get_contents($filePath);
 
-        return $imageSchema;
+        if (!$image) {
+        	throw new NotFoundHttpException('No image scheme was found.');
+        }
+
+        $image = json_decode($image, true);
+        unset($image['password']);
+        $image = json_encode($image);
+
+        return $image;
     }
 
     public function saveImageSchema(string $image): ImageScheme

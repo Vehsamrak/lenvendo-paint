@@ -2,5 +2,5 @@
 
 return [
     '' => 'default/index',
-    'image' => 'image/show',
+    'image/view/<id:.*>' => 'image/view',
 ];

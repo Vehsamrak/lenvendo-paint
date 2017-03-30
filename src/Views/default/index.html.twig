@@ -8,7 +8,9 @@
     <div class="image-box">
         {% if imageUrls|default %}
             {% for imageUrl in imageUrls %}
-                <a href="{{ imageUrl }}" class="image"></a>
+                <a href="{{ imageUrl }}" class="image">
+                    <canvas id="painting" width="400" height="300"></canvas>
+                </a>
             {% endfor %}
         {% endif %}
     </div>

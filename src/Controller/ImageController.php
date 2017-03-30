@@ -38,4 +38,20 @@ class ImageController extends AbstractController
     {
         return $this->render('image/create.html.twig', ['imagesListUrl' => Url::to(['default/index'])]);
     }
+
+    public function actionView(string $id): string
+    {
+        /** @var ImageRepository $imageRepository */
+        $imageRepository = $this->getService('imageRepository');
+        $imageScheme = $imageRepository->getImageSchemaById($id);
+
+        return $this->render(
+            'image/create.html.twig',
+            [
+                'imagesListUrl' => Url::to(['default/index']),
+                'imageId'       => $id,
+                'scheme'        => $imageScheme,
+            ]
+        );
+    }
 }

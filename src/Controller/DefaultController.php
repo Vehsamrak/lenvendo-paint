@@ -20,7 +20,7 @@ class DefaultController extends AbstractController
         $allImageIds = $imageRepository->getAllImageSchemeIds();
 
         foreach ($allImageIds as $imageId) {
-            $parameters['imageUrls'][] = sprintf('%s/%s', Url::to(['image/show']), $imageId);
+            $parameters['imageUrls'][] = sprintf('%s/%s', Url::to(['image/view']), $imageId);
         }
 
         return $this->render('default/index.html.twig', $parameters);

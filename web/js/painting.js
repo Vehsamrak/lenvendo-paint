@@ -4,6 +4,13 @@ var canvas = new fabric.Canvas('painting', {
 
 canvas.freeDrawingBrush.width = 5;
 
+
+if (imageSchemeData) {
+    var imageSchemeData = JSON.parse(imageSchemeData);
+    canvas.loadFromJSON(imageSchemeData);
+    canvas.renderAll();
+}
+
 $('#painting-reset').click(function () {
     canvas.clear();
 });
