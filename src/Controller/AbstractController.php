@@ -31,4 +31,9 @@ abstract class AbstractController extends Controller
     {
         return \Yii::$app->get($serviceName);
     }
+
+    protected function getParameter(string $name): string
+    {
+        return \Yii::$app->request->post($name);
+    }
 }
