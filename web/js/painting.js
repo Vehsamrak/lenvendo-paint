@@ -1,15 +1,12 @@
-var canvas = new fabric.Canvas('painting', {
-    isDrawingMode: true
-});
-
-canvas.freeDrawingBrush.width = 5;
-
+var canvas = new fabric.StaticCanvas('painting');
 
 if (imageSchemeData) {
     var imageSchemeData = JSON.parse(imageSchemeData);
     canvas.loadFromJSON(imageSchemeData);
     canvas.renderAll();
 }
+
+var $paintingResult = $('#painting-result');
 
 $('#painting-reset').click(function () {
     canvas.clear();
@@ -30,4 +27,20 @@ $('#painting-create').click(function () {
         $('#painting-result .id').html('Id: ' + imageSchemeId);
         $('#painting-result .password').html('Password: ' + imageSchemePassword);
     });
+});
+
+$('.painting-unlock span').click(function () {
+    $('.painting-unlock').hide();
+    $paintingResult.removeClass('hidden');
+
+    var canvas = new fabric.Canvas('painting', {
+        isDrawingMode: true
+    });
+
+    canvas.freeDrawingBrush.width = 5;
+
+    if (imageSchemeData) {
+        canvas.loadFromJSON(imageSchemeData);
+        canvas.renderAll();
+    }
 });

@@ -28,11 +28,15 @@ table {
 }
 
 table td:first-child {
-    text-align: center;
+    text-align: left;
 }
 
 table td:last-child {
     text-align: left;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 .line {
