@@ -2,7 +2,7 @@
 
 namespace Lenvendo\Canvas\Service\ImageRepository;
 
-use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageScheme;
+use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\Image;
 
 /**
  * @author Vehsamrak
@@ -11,6 +11,6 @@ interface ImageRepository
 {
 
     public function getAllImageSchemeIds(): array;
-    public function getImageSchemaById(string $id): ImageScheme;
-    public function saveImageSchema(string $imageSchema): ImageScheme;
+    public function getImageSchemaById(string $id): Image;
+    public function saveImageSchema(string $imageSchema): Image;
 }

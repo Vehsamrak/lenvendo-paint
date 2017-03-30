@@ -3,7 +3,7 @@
 namespace Lenvendo\Canvas\Service\ImageRepository;
 
 use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageSchemeFactory;
-use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\ImageScheme as ImageScheme;
+use Lenvendo\Canvas\Service\ImageRepository\ImageScheme\Image as Image;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -34,7 +34,7 @@ class FileImageRepository implements ImageRepository
         return array_values($allFiles);
     }
 
-    public function getImageSchemaById(string $id): ImageScheme
+    public function getImageSchemaById(string $id): Image
     {
         $filePath = implode(DIRECTORY_SEPARATOR, [$this->getImageSchemaDirectory(), $id]);
         $image = file_get_contents($filePath);
@@ -48,10 +48,10 @@ class FileImageRepository implements ImageRepository
         unset($image['password']);
         $image = json_encode($image);
 
-        return new ImageScheme($id, $password, $image);
+        return new Image($id, $password, $image);
     }
 
-    public function saveImageSchema(string $image): ImageScheme
+    public function saveImageSchema(string $image): Image
     {
         $imageScheme = $this->imageSchemeFactory->createImageScheme($image);
         $imageSchemeId = $imageScheme->getId();

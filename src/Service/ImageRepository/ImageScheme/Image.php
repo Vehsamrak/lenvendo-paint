@@ -5,7 +5,7 @@ namespace Lenvendo\Canvas\Service\ImageRepository\ImageScheme;
 /**
  * @author Vehsamrak
  */
-class ImageScheme
+class Image
 {
 
     private $id;

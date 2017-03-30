@@ -4,6 +4,7 @@ namespace Lenvendo\Canvas\Controller;
 
 use Lenvendo\Canvas\Service\ImageRepository\ImageRepository;
 use yii\helpers\Url;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * @author Vehsamrak
@@ -49,16 +50,41 @@ class ImageController extends AbstractController
     {
         /** @var ImageRepository $imageRepository */
         $imageRepository = $this->getService('imageRepository');
-        $imageScheme = $imageRepository->getImageSchemaById($id);
+        $image = $imageRepository->getImageSchemaById($id);
 
         return $this->render(
             'image/image.html.twig',
             [
                 'imagesListUrl' => Url::to(['default/index']),
                 'imageId'       => $id,
-                'scheme'        => $imageScheme,
+                'scheme'        => $image->getScheme(),
                 'isNewImage'    => false,
             ]
         );
+    }
+
+    public function actionCheck(): string
+    {
+        $id = $this->getParameter('id');
+        $password = $this->getParameter('password');
+
+        if (!$id || !$password) {
+        	throw new UnauthorizedHttpException();
+        }
+
+        /** @var ImageRepository $imageRepository */
+        $imageRepository = $this->getService('imageRepository');
+        $image = $imageRepository->getImageSchemaById($id);
+
+        if ($password != $image->getPassword()) {
+        	throw new UnauthorizedHttpException();
+        }
+
+        $result = [
+            'id'       => $image->getId(),
+            'password' => $image->getPassword(),
+        ];
+
+        return $this->respondJson($result);
     }
 }

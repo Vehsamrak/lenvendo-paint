@@ -18,12 +18,12 @@ class ImageSchemeFactory
         $this->idGenerator = $idGenerator;
     }
 
-    public function createImageScheme(string $imageScheme): ImageScheme
+    public function createImageScheme(string $imageScheme): Image
     {
         $id = $this->idGenerator->generateRandomId();
         $password = $this->generateRandomPassword();
 
-        return new ImageScheme($id, $password, $imageScheme);
+        return new Image($id, $password, $imageScheme);
     }
 
     /**
