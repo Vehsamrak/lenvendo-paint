@@ -11,7 +11,6 @@ use yii\web\NotFoundHttpException;
  */
 class FileImageRepository implements ImageRepository
 {
-
     /** @var ImageSchemeFactory */
     private $imageSchemeFactory;
 
